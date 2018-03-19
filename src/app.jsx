@@ -5,19 +5,24 @@ import { BrowserRouter as Router ,Switch,Route,Link,Redirect} from "react-router
 
 import Layout from "@/components/layout/index.jsx";
 import Home from '@/page/home/index.jsx'
+import Login from "@/page/login/index.jsx";
 class APP extends React.Component{
     render(){
         return(
-            <Router>                
-                <Layout>
-                    <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route exact path="/product" component={Home} />
-                        <Route exact path="/product-category" component={Home} />
-                        <Route exact path="/order" component={Home} />
-                        <Route exact path="/user" component={Home} />
-                    </Switch>
-                </Layout>
+            <Router>
+                <Switch>
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/" render={props=>(
+                        <Layout>
+                            <Switch>
+                                <Route exact path="/" component={Home} />
+                                <Route exact path="/product" component={Home} />
+                                <Route exact path="/product-category" component={Home} />
+                            </Switch>
+                        </Layout>
+                    )} />
+                </Switch>                
+                
             </Router>         
         )    
     }

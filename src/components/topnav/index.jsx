@@ -1,11 +1,23 @@
 import React from 'react'
 import { BrowserRouter as Router ,Switch,Route,Link,Redirect} from "react-router-dom"
+import Utils from '@/utils/index.js'
+import User from '@/service/user-service.jsx'
+const _Utils = new Utils()
+const _User = new User()
 class TopNav extends React.Component {
     constructor(props){
         super(props)
+        this.state={
+            username: _Utils.getStorage('userInfo').username||''
+        }
     }
     onLogout(){
-        console.log('123')
+        _User.logout().then((res)=>{
+            _Utils.removeStorage('userInfo')
+            window.location.href= '/login'
+        }).catch((err)=>{
+            _Utils.errorTips(err)
+        })
     }
     render() {
          return(
@@ -20,7 +32,7 @@ class TopNav extends React.Component {
                 <li className="dropdown">
                     <a className="dropdown-toggle" href="javascript:;" >
                         <i className="fa fa-user fa-fw"></i>
-                        <span>欢迎admin</span> 
+                                 <span>欢迎{this.state.username}</span> 
                         <i className="fa fa-caret-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-user">
