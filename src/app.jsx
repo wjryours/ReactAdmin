@@ -6,21 +6,28 @@ import { BrowserRouter as Router ,Switch,Route,Link,Redirect} from "react-router
 import Layout from "@/components/layout/index.jsx";
 import Home from '@/page/home/index.jsx'
 import Login from "@/page/login/index.jsx";
+import UserList from "@/page/user/index.jsx"
+import ErrorPage from "@/page/error/index.jsx";
 class APP extends React.Component{
+   
     render(){
-        return(
-            <Router>
-                <Switch>
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/" render={props=>(
+         let LatoutRouter =(
                         <Layout>
                             <Switch>
                                 <Route exact path="/" component={Home} />
-                                <Route exact path="/product" component={Home} />
-                                <Route exact path="/product-category" component={Home} />
+                                <Route  path="/product" component={Home} />
+                                <Route  path="/product-category" component={Home} />
+                                <Route  path="/user/index" component={UserList} />
+                                <Redirect exact from="/user" to="/user/index" /> 
+                                <Route component={ErrorPage} />
                             </Switch>
                         </Layout>
-                    )} />
+                    )
+        return(
+            <Router>
+                <Switch>
+                    <Route  path="/login" component={Login} />
+                    <Route  path="/" render={props=>LatoutRouter} />
                 </Switch>                
                 
             </Router>         

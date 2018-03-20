@@ -32,5 +32,14 @@ class User{
             url: '/user/logout.do'
         })
     }
+    getUserList(PageNum){
+        return _Utils.request({
+            type: 'post',
+            url: '/manage/user/list.do',
+            data:{
+                pageNum: PageNum
+            }
+        })
+    }
 }
 export default User
