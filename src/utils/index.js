@@ -35,7 +35,9 @@ class Utils {
     errorTips(err){
         alert(err||'哈哈哈')
     }
-    
+    successTips(msg){
+        alert(msg || '操作成功')
+    }
     setStorage(name,data){
         let dataType = typeof data
         if (dataType ==='object') {
