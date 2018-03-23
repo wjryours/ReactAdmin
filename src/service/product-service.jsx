@@ -28,5 +28,12 @@ class Product {
             data: productInfo
         })
     }
+    getCategoryList(parentCategoryId){
+        return _Utils.request({
+            type: 'get',
+            url: '/manage/category/get_category.do',
+            data: { categoryId:parentCategoryId||0}
+        })
+    }
 }
 export default Product
