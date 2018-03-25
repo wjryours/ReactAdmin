@@ -1,9 +1,4 @@
-/*
-* @Author: Rosen
-* @Date:   2018-02-02 17:13:05
-* @Last Modified by:   Rosen
-* @Last Modified time: 2018-02-02 21:46:07
-*/
+
 import React        from 'react';
 import Simditor     from 'simditor';
 import 'simditor/styles/simditor.scss';
@@ -15,6 +10,11 @@ class RichEditor extends React.Component{
     }
     componentDidMount(){
         this.loadEditor();
+    }
+    componentWillReceiveProps(nextProps) {
+        if (this.props.defaultDetail !== nextProps.defaultDetail) {
+            this.simditor.setValue(nextProps.defaultDetail);
+        }
     }
     componentWillReceiveProps(nextProps){
         if(this.props.defaultDetail !== nextProps.defaultDetail){
